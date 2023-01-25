@@ -6,6 +6,8 @@ import java.util.List;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -28,6 +30,18 @@ public class Cliente implements Serializable{
 	@OneToMany(mappedBy = "cliente")
 	List<Compras> compraList;
 	
+	@ManyToOne
+	@JoinColumn(name = "IDCOMPRA")
+	Compras compras;
+	
+	public Compras getCompras() {
+		return compras;
+	}
+
+	public void setCompras(Compras compras) {
+		this.compras = compras;
+	}
+
 	public Cliente() {
 		
 	}

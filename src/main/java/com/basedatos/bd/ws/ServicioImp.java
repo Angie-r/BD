@@ -34,6 +34,11 @@ public class ServicioImp implements ServicioInt{
 		
 		return usuarioRepository.save(usuario);
 	}
+	@Override
+	public void borrarUsuario(Long id) {
+		usuarioRepository.deleteById(id);
+		
+	}
 	
 	@Autowired
 	EstudiantesRepository estudiantesRepository;
@@ -50,6 +55,11 @@ public class ServicioImp implements ServicioInt{
 		return estudiantesRepository.save(estudiantes);
 	}
 	
+	@Override
+	public void borrarEstudiante(Long id) {
+		estudiantesRepository.deleteById(id);
+	}
+	
 	@Autowired
 	GradoRepository gradoRepository;
 	
@@ -62,6 +72,11 @@ public class ServicioImp implements ServicioInt{
 	@Override
 	public Grado guardar(Grado grado) {
 		return gradoRepository.save(grado);
+	}
+	
+	@Override
+	public void borrarGrado(Long id) {
+		gradoRepository.deleteById(id);
 	}
 
 	
@@ -77,6 +92,11 @@ public class ServicioImp implements ServicioInt{
 	public Cliente guardar(Cliente cliente) {
 		return clienteRepository.save(cliente);
 	}
+	
+	@Override
+	public void borrarCliente(Long id) {
+		clienteRepository.deleteById(id);
+	}
 
 	@Autowired
 	ComprasRepository comprasRepository;
@@ -90,6 +110,15 @@ public class ServicioImp implements ServicioInt{
 	public Compras guardar(Compras compras) {
 		return comprasRepository.save(compras);
 	}
+	
+	@Override
+	public void borrarCompra(Long id) {
+		comprasRepository.deleteById(id);
+	}
+
+	
+
+	
 	
 	
 	
