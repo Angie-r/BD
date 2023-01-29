@@ -1,6 +1,10 @@
 package com.basedatos.bd.wsint;
 
+import java.sql.Date;
 import java.util.List;
+import java.util.Map;
+
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,17 +31,47 @@ public interface ServicioInt {
 	@PostMapping(path="guardar")
 	public Usuario guardar(@RequestBody Usuario usuario);
 	
-	@DeleteMapping("/consultar/{id}")
+	@DeleteMapping("/borrarUsuario/{id}")
 	public void borrarUsuario(@PathVariable("id") Long id);
 	
+	@GetMapping("consultar/nombre/{nombre}")
+	public List<Usuario> buscarPersonaPorNombre(@PathVariable("nombre") String nombre);
+	
+	@GetMapping("consultar/nombre2/{nombre}")
+	public List<Map<String, Object>> buscarPorNombre(@PathVariable("nombre") String nombre);
+	
+	//Estudiantes y Grado
 	@GetMapping("/estudiante")
 	public List<Estudiantes> buscarEstudiante();
 	
 	@PostMapping("guardarEstudiante")
 	public Estudiantes guardar(@RequestBody Estudiantes estudiantes);
 	
-	@DeleteMapping("/estudiante/{id}")
+	@DeleteMapping("/borrarEstudiante/{id}")
 	public void borrarEstudiante(@PathVariable("id") Long id);
+	
+	@GetMapping("estudiante/ordenar/{materia}")
+	public List<Estudiantes> ordenarPorNombreMateria(@PathVariable("materia")String materia);
+	
+	@GetMapping("estudiante/fechaAsignacion/{asignacion}")
+	public List<Estudiantes> mostraFechaAsignacion(@PathVariable("asignacion")Date asignacion);
+	
+	@GetMapping("estudiante/contiene/{apellido}")
+	public List<Estudiantes> contieneApellido(@PathVariable("apellido")String apellido);
+	
+	@GetMapping("estudiante/buscaNombreApellido/{nombre} {apellido}")
+	public List<Estudiantes> buscaNomApelli(@PathVariable("nombre") String nombre,
+										   @PathVariable("apellido")String apellido); 
+	
+
+	@GetMapping("estudiante/nombreTermina/{nombre}")
+	public List<Estudiantes> nombreTermina(@PathVariable("nombre") String nombre);
+	
+	@GetMapping("estudiante/buscaPorGrado/{grado}")
+	public List<Map<String, Object>> buscarPorGrado(@PathVariable("grado") String grado);
+	
+	@GetMapping("estudiante/mostrarNotas")
+	public List<Map<String, Object>> mostrarNota();
 	
 	@GetMapping("/grado")
 	public List<Grado> buscarGrado();
@@ -47,6 +81,11 @@ public interface ServicioInt {
 	
 	@DeleteMapping("/grado/{id}")
 	public void borrarGrado(@PathVariable("id") Long id);
+	
+	@PostMapping("/insertarGrado")
+	public void insertarGrado(@RequestBody Grado grado); 
+	
+	
 
 	@GetMapping("/clientes")
 	public List<Cliente> buscarCliente();
@@ -54,7 +93,7 @@ public interface ServicioInt {
 	@PostMapping("guardarCliente")
 	public Cliente guardar(@RequestBody Cliente cliente);
 	
-	@DeleteMapping("/clientes/{id}")
+	@DeleteMapping("/GuardarClientes/{id}")
 	public void borrarCliente(@PathVariable("id") Long id);
 	
 	@GetMapping("/compras")
@@ -63,7 +102,9 @@ public interface ServicioInt {
 	@PostMapping("guardarCompras")
 	public Compras guardar(@RequestBody Compras compras);
 	
-	@DeleteMapping("/compras/{id}")
+	@DeleteMapping("/borrarCompras/{id}")
 	public void borrarCompra(@PathVariable("id") Long id);
+
+	
 
 }

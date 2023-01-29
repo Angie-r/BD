@@ -1,6 +1,7 @@
 package com.basedatos.bd.entity;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 
 import jakarta.persistence.Column;
@@ -30,7 +31,12 @@ public class Estudiantes implements Serializable{
 	@Column(name = "CORREO")
 	private String correo;
 	
+	@Column(name = "MATERIA")
+	private String materia;
 	
+	@Column(name = "ASIGNACION")
+	private Date asignacion;
+
 	@ManyToOne
 	//(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "IDGRADO")
@@ -77,7 +83,23 @@ public class Estudiantes implements Serializable{
 		this.correo = correo;
 	}
 	
-	
+	public String getMateria() {
+		return materia;
+	}
+
+	public void setMateria(String materia) {
+		this.materia = materia;
+	}
+
+	public Date getAsignacion() {
+		return asignacion;
+	}
+
+	public void setAsignacion(Date asignacion) {
+		this.asignacion = asignacion;
+	}
+
+
 	
 	
 	
